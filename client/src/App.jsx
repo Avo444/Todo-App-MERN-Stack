@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { Auth, Home } from "./pages";
+import { Auth, Home, NotFound } from "./pages";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { getUserData } from "./store/slices/authSlice/api";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import ROUTES from "./ROUTES";
 import "./App.scss";
-import { getUserData } from "./store/slices/authSlice/api";
 import Navbar from "./components/futures/Navbar";
 
 const App = () => {
@@ -49,6 +49,7 @@ const App = () => {
                 <Route path={ROUTES.HOME} element={<Home />} />
                 <Route path={ROUTES.LOGIN} element={<Auth />} />
                 <Route path={ROUTES.REGISTER} element={<Auth isRegister />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
 
             <ToastContainer />
