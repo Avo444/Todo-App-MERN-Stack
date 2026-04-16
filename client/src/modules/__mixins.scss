@@ -1,0 +1,62 @@
+@use "_variables" as *;
+
+@mixin flex($justify: center, $align: center, $direction: row, $gap: 0) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+@mixin flex-column($gap: 12px) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin btn() {
+    display: inline-block;
+    background: $primaryColor;
+    border-radius: $borderRadius;
+    font-weight: 600;
+    font-size: 14px;
+    color: $white;
+    padding: 12px 24px;
+    border: 1px solid $primaryColor;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+        background-color: #3D53DB;
+    }
+    &:focus {
+        background-color: $primaryColor;
+    }
+    &:active{
+        background-color: #2A3BB7;
+    }
+}
+
+@mixin label($size: 16px, $weight: 600) {
+    font-weight: $weight;
+    font-size: $size;
+    letter-spacing: -0.02em;
+    color: $darkColor;
+
+    input,
+    select {
+        font-weight: calc($weight - 100);
+        font-size: calc($size - 2px);
+        letter-spacing: -0.02em;
+        color: $darkColor;
+        padding: 10px 15px;
+        outline: none;
+        border-radius: $borderRadius;
+        border: 1px solid $borderColor;
+        transition: $transition;
+        &:focus {
+            border-color: $primaryColor;
+            color: $primaryColor;
+        }
+    }
+}
