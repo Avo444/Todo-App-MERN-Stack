@@ -11,7 +11,10 @@ const HelpCenter = () => {
                     Having Trouble in Learning. Please contact us for more
                     questions.
                 </p>
-                <a href="/help" className={styles["help__center--content__btn"]}>
+                <a
+                    href="/help"
+                    className={styles["help__center--content__btn"]}
+                >
                     Go To Help Center
                 </a>
             </div>
@@ -19,4 +22,4 @@ const HelpCenter = () => {
     );
 };
 
-export { HelpCenter };
+export default HelpCenter;

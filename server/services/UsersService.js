@@ -40,7 +40,10 @@ class UsersService extends DatabaseService {
 
     async getUserData(id) {
         const db = await this.connect("users");
-        const user = await db.findOne({ _id: new ObjectId(id) });
+        const user = await db.findOne(
+            { _id: new ObjectId(id) },
+            { projection: { password: 0 } },
+        );
         return user;
     }
 }

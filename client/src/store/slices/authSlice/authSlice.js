@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, register } from "./api";
+import { getUserData, login, register } from "./api";
 
 const authSlice = createSlice({
     name: "auth",
@@ -37,6 +37,21 @@ const authSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(login.rejected, (state, action) => {
+            state.loader = false;
+            state.error = action.payload;
+        });
+
+        builder.addCase(getUserData.pending, (state) => {
+            state.error = null;
+            state.loader = true;
+            state.success = false;
+        });
+        builder.addCase(getUserData.fulfilled, (state, action) => {
+            state.loader = false;
+            state.success = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getUserData.rejected, (state, action) => {
             state.loader = false;
             state.error = action.payload;
         });

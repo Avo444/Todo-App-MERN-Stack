@@ -1,6 +1,7 @@
-import ROUTES from "../../../ROUTES";
 import { HelpCenter, Logo } from "../../shared";
-import { NavbarItem } from "../../shared/NavbarItem";
+import { NavbarItem } from "../../shared";
+
+import ROUTES from "../../../ROUTES";
 import styles from "./index.module.scss";
 
 const Navbar = () => {

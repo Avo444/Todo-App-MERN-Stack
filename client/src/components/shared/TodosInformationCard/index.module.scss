@@ -1,0 +1,47 @@
+@use "../../../modules/_index" as *;
+.item {
+    @include flex-column(5px);
+    max-width: 320px;
+    width: 100%;
+    padding: 20px;
+    background: $white;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    .title {
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: -0.02em;
+        color: $white;
+    }
+
+    .count {
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: -0.02em;
+        color: $primaryColorless;
+
+        span {
+            color: $white;
+            font-weight: 600;
+        }
+    }
+
+
+
+    &.success {
+        background-color: rgba($success, $alpha: 0.5);
+        border-color: $success;
+    }
+
+    &.info {
+        background-color: rgba($info, $alpha: 0.5);
+        border-color: $info;
+
+    }
+
+    &.warning {
+        background-color: rgba($warning, $alpha: 0.5);
+        border-color: $warning;
+
+    }
+}

@@ -1,0 +1,17 @@
+@use "../../../modules/_index" as *;
+.heading {
+    @include flex-column();
+
+    .title {
+        font-weight: 600;
+        font-size: 24px;
+        color: $textColor;
+        letter-spacing: -0.03em;
+    }
+    .desc {
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: -0.02em;
+        color: $primaryColorless;
+    }
+}

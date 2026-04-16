@@ -1,0 +1,6 @@
+@use "../../../modules/_index" as *;
+.content {
+    @include flex-column(30px);
+    padding: 30px;
+    width: 100%;
+}

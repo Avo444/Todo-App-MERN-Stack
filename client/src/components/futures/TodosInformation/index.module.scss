@@ -1,0 +1,14 @@
+@use "../../../modules/_index" as *;
+.information {
+    @include flex-column(20px);
+
+    .title {
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: -0.03em;
+        color: $darkColor;
+    }
+    .content {
+        @include flex(flex-start, center, row, 20px);
+    }
+}

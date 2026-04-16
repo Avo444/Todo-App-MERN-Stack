@@ -1,7 +1,7 @@
+import { HomeContent } from "../components/futures";
+
 const Home = () => {
-    return (
-        <p>Home page</p>
-    )
+    return <HomeContent />;
 };
 
 export default Home;
