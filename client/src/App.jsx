@@ -7,6 +7,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ROUTES from "./ROUTES";
 import "./App.scss";
 import { getUserData } from "./store/slices/authSlice/api";
+import Navbar from "./components/futures/Navbar";
 
 const App = () => {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ const App = () => {
                 navigate(ROUTES.HOME);
             }
 
-            dispatch(getUserData(userID))
+            dispatch(getUserData(userID));
         } else {
             if (
                 location.pathname !== ROUTES.LOGIN ||
@@ -35,7 +36,15 @@ const App = () => {
     }, []);
 
     return (
-        <>
+        <div
+            className={
+                location.pathname !== ROUTES.LOGIN ||
+                location.pathname !== ROUTES.REGISTER
+                    ? "dashboard"
+                    : ""
+            }
+        >
+            <Navbar />
             <Routes>
                 <Route path={ROUTES.HOME} element={<Home />} />
                 <Route path={ROUTES.LOGIN} element={<Auth />} />
@@ -43,7 +52,7 @@ const App = () => {
             </Routes>
 
             <ToastContainer />
-        </>
+        </div>
     );
 };
 

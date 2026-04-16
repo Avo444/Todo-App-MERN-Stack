@@ -1,0 +1,10 @@
+@use "../../../modules/_index" as *;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    color: $darkColor;
+}

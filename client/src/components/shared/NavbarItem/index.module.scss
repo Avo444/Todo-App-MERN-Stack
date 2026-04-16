@@ -1,0 +1,27 @@
+@use "../../../modules/_index" as *;
+.item > .nav__item {
+    @include flex(flex-start, center, row, 10px);
+    width: 100%;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: $primaryLight;
+    border-radius: 10px;
+    transition: $transition;
+    &.active,
+    &:hover {
+        color: $darkColor;
+        background-color: $lightGray;
+    }
+    &:hover:not(.active) {
+        background-color: transparent;
+    }
+}
+
+:global {
+    .active {
+        color: $darkColor;
+        background-color: $lightGray;
+    }
+}
