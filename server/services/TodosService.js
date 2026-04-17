@@ -54,5 +54,11 @@ class TodosService extends DatabaseService {
 
         return todo;
     }
+
+    async deleteTodo(id) {
+        const db = await this.connect("todos");
+        const deletedTodo = await db.deleteOne({ _id: new ObjectId(id) });
+        return { id };
+    }
 }
 module.exports = TodosService;

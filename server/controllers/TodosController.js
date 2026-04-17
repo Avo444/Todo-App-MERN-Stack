@@ -36,5 +36,16 @@ class TodosController {
             sendResponse(res, error, 500);
         }
     }
+
+    async deleteTodo(req, res) {
+        try {
+            const { id } = req.params;
+            const todoID = await req.app.locals.services.todos.deleteTodo(id);
+            sendResponse(res, todoID);
+        } catch (err) {
+            const error = { error: err.message };
+            sendResponse(res, error, 500);
+        }
+    }
 }
 module.exports = TodosController;

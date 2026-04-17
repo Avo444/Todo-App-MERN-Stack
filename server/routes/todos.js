@@ -7,5 +7,6 @@ const todosController = new TodosController();
 router.get("/", todosController.getAllTodos);
 router.post("/", todosController.addTodo);
 router.patch("/:id", todosController.patchTodo);
+router.delete("/:id", todosController.deleteTodo);
 
 module.exports = router;
