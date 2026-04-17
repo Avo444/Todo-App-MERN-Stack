@@ -9,13 +9,11 @@
     color: $primaryLight;
     border-radius: 10px;
     transition: $transition;
-    &.active,
+    border: 1px solid transparent;
+
     &:hover {
         color: $darkColor;
-        background-color: $lightGray;
-    }
-    &:hover:not(.active) {
-        background-color: transparent;
+        border-color: $lightGray;
     }
 }
 

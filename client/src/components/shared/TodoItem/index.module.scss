@@ -1,0 +1,48 @@
+@use "../../../modules/_index" as *;
+
+.item {
+    @include flex(space-between, center);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid $borderColor;
+    transition: $transition;
+
+    .title {
+        font-weight: 600;
+        font-size: 16px;
+        color: $textColor;
+        letter-spacing: -0.03em;
+        transition: $transition;
+    }
+
+    .buttons {
+        @include flex(center, center, row, 10px);
+
+        .btn {
+            @include btn(5px 15px);
+            &.edit {
+                background-color: rgba($info, $alpha: 0.7);
+                border-color: $info;
+
+                &:hover {
+                    background-color: $info;
+                }
+            }
+            &.delete {
+                background-color: rgba($error, $alpha: 0.7);
+                border-color: $error;
+
+                &:hover {
+                    background-color: $error;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        border-color: $primaryColor;
+        .title {
+            color: $primaryColor;
+        }
+    }
+}

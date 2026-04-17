@@ -8,4 +8,8 @@ export const Axios = {
 
     // USERS
     getUserData: (userID) => instance.get(`/api/users/${userID}`),
+
+    // Todos
+    getTodosByUserID: (userID) => instance.get(`/api/todos?userID=${userID}`),
+    addTodo: (userID, title) => instance.post(`/api/todos`, { userID, title }),
 };

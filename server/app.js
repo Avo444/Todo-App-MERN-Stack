@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { authRouter, usersRouter } = require("./routes");
+const { authRouter, usersRouter, todosRouter } = require("./routes");
 
 const path = require("path");
 const cors = require("cors");
@@ -9,11 +9,13 @@ const express = require("express");
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const UsersService = require("./services/UsersService");
+const { TodosService } = require("./services");
 
 const app = express();
 
 app.locals.services = {
     users: new UsersService(),
+    todos: new TodosService()
 };
 
 app.set("view engine", "ejs");
@@ -32,6 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", authRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/todos", todosRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));

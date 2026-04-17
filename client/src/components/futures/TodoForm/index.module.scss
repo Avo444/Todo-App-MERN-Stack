@@ -1,0 +1,13 @@
+@use "../../../modules/_index" as *;
+.form {
+    @include flex(center, flex-end, row, 5px);
+
+    label {
+        @include flex-column(10px);
+        @include label();
+        flex: 1;
+    }
+    .btn {
+        @include btn();
+    }
+}

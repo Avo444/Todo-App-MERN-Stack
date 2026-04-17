@@ -14,26 +14,26 @@
     gap: $gap;
 }
 
-@mixin btn() {
+@mixin btn($padding: 12px 24px) {
     display: inline-block;
-    background: $primaryColor;
     border-radius: $borderRadius;
     font-weight: 600;
     font-size: 14px;
+    background: $primaryColor;
     color: $white;
-    padding: 12px 24px;
+    padding: $padding;
     border: 1px solid $primaryColor;
     cursor: pointer;
     transition: $transition;
 
     &:hover {
-        background-color: #3D53DB;
+        background-color: #3d53db;
     }
     &:focus {
         background-color: $primaryColor;
     }
-    &:active{
-        background-color: #2A3BB7;
+    &:active {
+        background-color: #2a3bb7;
     }
 }
 

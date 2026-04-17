@@ -1,20 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addTodoData, getUserTodos } from "./api";
 
 const todoSlice = createSlice({
     name: "todo",
     initialState: {
         data: [],
         error: null,
+        success: null,
         loader: false,
     },
     reducers: {},
-    extraReducers: (builder) => {},
+    extraReducers: (builder) => {
+        builder.addCase(getUserTodos.pending, (state) => {
+            state.loader = true;
+            state.error = null;
+            state.success = null;
+        });
+        builder.addCase(getUserTodos.fulfilled, (state, action) => {
+            state.loader = false;
+            state.data = action.payload;
+        });
+        builder.addCase(getUserTodos.rejected, (state, action) => {
+            state.loader = false;
+            state.error = action.payload;
+        });
+
+        builder.addCase(addTodoData.pending, (state) => {
+            state.loader = true;
+            state.success = null;
+        });
+        builder.addCase(addTodoData.fulfilled, (state, action) => {
+            state.loader = false;
+            state.data = [...state.data, action.payload];
+        });
+        builder.addCase(addTodoData.rejected, (state, action) => {
+            state.loader = false;
+            state.error = action.payload;
+        });
+    },
     selectors: {
         getTodoData: (state) => state.data,
         getTodoError: (state) => state.error,
         getTodoLoader: (state) => state.loader,
+        getTodosDone: (state) => state.data.filter((todo) => todo.isDone),
+        getTodosInProcess: (state) => state.data.filter((todo) => !todo.isDone),
+        getTodosEdited: (state) => state.data.filter((todo) => todo.updatedAt),
     },
 });
 
 export const todoReducer = todoSlice.reducer;
-export const { getTodoData, getTodoError, getTodoLoader } = todoSlice.selectors;
+export const {
+    getTodoData,
+    getTodoError,
+    getTodosDone,
+    getTodoLoader,
+    getTodosEdited,
+    getTodosInProcess,
+} = todoSlice.selectors;

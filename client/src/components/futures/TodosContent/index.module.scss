@@ -1,0 +1,17 @@
+@use "../../../modules/_index" as *;
+.content {
+    @include flex(center, center);
+    width: 100%;
+    min-height: 100vh;
+
+    .todos {
+        @include flex-column(10px);
+        max-width:600px;
+        width: 100%;
+        min-height: 600px;
+        background-color: $white;
+        border-radius: 30px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba($primaryColorless, $alpha: 0.2);
+    }
+}

@@ -1,19 +1,21 @@
 import { useEffect } from "react";
-import { Auth, Home, NotFound } from "./pages";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { getUserData } from "./store/slices/authSlice/api";
+import { getUserTodos } from "./store/slices/todoSlice/api";
+import { Auth, Home, NotFound, Todos } from "./pages";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import Navbar from "./components/futures/Navbar";
 import ROUTES from "./ROUTES";
 import "./App.scss";
-import Navbar from "./components/futures/Navbar";
 
 const App = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
     const userID = localStorage.getItem("userID");
+    
     useEffect(() => {
         if (userID) {
             if (
@@ -22,8 +24,8 @@ const App = () => {
             ) {
                 navigate(ROUTES.HOME);
             }
-
             dispatch(getUserData(userID));
+            dispatch(getUserTodos())
         } else {
             if (
                 location.pathname !== ROUTES.LOGIN ||
@@ -38,17 +40,17 @@ const App = () => {
     return (
         <div
             className={
-                location.pathname !== ROUTES.LOGIN ||
-                location.pathname !== ROUTES.REGISTER
+                userID
                     ? "dashboard"
                     : ""
             }
         >
-            <Navbar />
+            {userID && <Navbar />}
             <Routes>
                 <Route path={ROUTES.HOME} element={<Home />} />
                 <Route path={ROUTES.LOGIN} element={<Auth />} />
                 <Route path={ROUTES.REGISTER} element={<Auth isRegister />} />
+                <Route path={ROUTES.TODOS} element={<Todos />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
 
