@@ -13,6 +13,10 @@
         color: $textColor;
         letter-spacing: -0.03em;
         transition: $transition;
+
+        &.active {
+            text-decoration: line-through;
+        }
     }
 
     .buttons {

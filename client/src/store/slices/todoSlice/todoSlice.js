@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTodoData, getUserTodos } from "./api";
+import { addTodoData, changeTodoData, getUserTodos } from "./api";
 
 const todoSlice = createSlice({
     name: "todo",
@@ -34,6 +34,21 @@ const todoSlice = createSlice({
             state.data = [...state.data, action.payload];
         });
         builder.addCase(addTodoData.rejected, (state, action) => {
+            state.loader = false;
+            state.error = action.payload;
+        });
+
+        builder.addCase(changeTodoData.pending, (state) => {
+            state.loader = false;
+            state.error = null;
+        });
+        builder.addCase(changeTodoData.fulfilled, (state, action) => {
+            state.loader = false;
+            state.data = state.data.map((todo) =>
+                todo.id === action.payload.id ? action.payload : todo,
+            );
+        });
+        builder.addCase(changeTodoData.rejected, (state, action) => {
             state.loader = false;
             state.error = action.payload;
         });

@@ -9,10 +9,23 @@ export const getUserTodos = createAsyncThunk("todo/getUserTodos", async () => {
 
 export const addTodoData = createAsyncThunk(
     "todo/addTodoData",
-    async (title, {rejectWithValue}) => {
+    async (title, { rejectWithValue }) => {
         try {
             const userID = localStorage.getItem("userID");
             const response = await Axios.addTodo(userID, title);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data.error);
+        }
+    },
+);
+
+export const changeTodoData = createAsyncThunk(
+    "todo/changeTodoData",
+    async (data, { rejectWithValue }) => {
+        try {
+            const userID = localStorage.getItem("userID");
+            const response = await Axios.patchTodoData({userID, ...data});
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data.error);

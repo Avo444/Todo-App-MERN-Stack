@@ -19,7 +19,7 @@ class TodosService extends DatabaseService {
         return todos;
     }
 
-    async addTodo({userID, title}) {
+    async addTodo({ userID, title }) {
         const db = await this.connect("todos");
         const createdTodo = await db.insertOne(createTodoData(userID, title));
         const todo = await db.findOne({
@@ -30,6 +30,27 @@ class TodosService extends DatabaseService {
             { _id: new ObjectId(userID) },
             { $push: { todos: createdTodo.insertedId } },
         );
+
+        return todo;
+    }
+
+    async patchTodo(data) {
+        const { id, userID } = data;
+        const db = await this.connect("todos");
+
+        const changedTodo = await db.updateOne(
+            { _id: new ObjectId(id), userID: userID },
+            {
+                $set: {
+                    ...data,
+                    ...(data.title ? { updatedAt: new Date() } : {}),
+                },
+            },
+        );
+        const todo = await db.findOne({
+            _id: new ObjectId(id),
+            userID: userID,
+        });
 
         return todo;
     }

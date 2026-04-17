@@ -23,5 +23,18 @@ class TodosController {
             sendResponse(res, error, 500);
         }
     }
+
+    async patchTodo(req, res) {
+        try {
+            const { id } = req.params;
+            const todo = await req.app.locals.services.todos.patchTodo(
+                req.body,
+            );
+            sendResponse(res, todo);
+        } catch (err) {
+            const error = { error: err.message };
+            sendResponse(res, error, 500);
+        }
+    }
 }
 module.exports = TodosController;
