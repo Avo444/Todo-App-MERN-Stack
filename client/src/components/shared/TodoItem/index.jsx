@@ -1,12 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import useTodo from "../../../hooks/useTodo";
 import ROUTES from "../../../ROUTES";
 import styles from "./index.module.scss";
-import { useState } from "react";
-import useTodo from "../../../hooks/useTodo";
 
-const TodoItem = ({ todo }) => {
-    const [checked, setChecked] = useState(todo.isDone);
+const TodoItem = ({ todo, setEditTodo }) => {
     const { changeDone } = useTodo();
+    const [checked, setChecked] = useState(todo.isDone);
+    const {deleteTodo} = useTodo();
     return (
         <div className={styles.item}>
             <input
@@ -22,8 +24,8 @@ const TodoItem = ({ todo }) => {
             </Link>
 
             <div className={styles.buttons}>
-                <button className={`${styles.btn} ${styles.edit}`}>Edit</button>
-                <button className={`${styles.btn} ${styles.delete}`}>
+                <button className={`${styles.btn} ${styles.edit}`} onClick={() => setEditTodo({id: todo._id, title: todo.title})}>Edit</button>
+                <button className={`${styles.btn} ${styles.delete}`} onClick={() => deleteTodo(todo._id)}>
                     Delete
                 </button>
             </div>

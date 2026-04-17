@@ -12,5 +12,6 @@ export const Axios = {
     // Todos
     getTodosByUserID: (userID) => instance.get(`/api/todos?userID=${userID}`),
     addTodo: (userID, title) => instance.post(`/api/todos`, { userID, title }),
-    patchTodoData: (data) => instance.patch(`/api/todos/${data.id}`, data)
+    patchTodoData: (data) => instance.patch(`/api/todos/${data.id}`, data),
+    deleteTodoData: (id) => instance.delete(`/api/todos/${id}`),
 };

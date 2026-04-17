@@ -25,7 +25,19 @@ export const changeTodoData = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const userID = localStorage.getItem("userID");
-            const response = await Axios.patchTodoData({userID, ...data});
+            const response = await Axios.patchTodoData({ userID, ...data });
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data.error);
+        }
+    },
+);
+
+export const deleteTodoData = createAsyncThunk(
+    "todo/deleteTodoData",
+    async (id, { rejectWithValue }) => {
+        try {
+            const response = await Axios.deleteTodoData(id);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data.error);
